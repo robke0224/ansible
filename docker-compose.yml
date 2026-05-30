@@ -1,0 +1,17 @@
+services:
+  web:
+    build: ./webapp
+    container_name: web_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./webapp:/app
+
+  ansible:
+    build: ./ansible-controller
+    container_name: ansible_controller
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace/ansible
+    tty: true
+    stdin_open: true

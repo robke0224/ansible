@@ -1,0 +1,14 @@
+---
+- name: Remove profane comments from website database
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Run clean_comments.py against shared workspace
+      ansible.builtin.command:
+        cmd: python /workspace/webapp/clean_comments.py
+      register: exec_result
+
+    - name: Show result
+      ansible.builtin.debug:
+        var: exec_result.stdout
